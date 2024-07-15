@@ -13,17 +13,28 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: var(--background-color);
+    background-image: url('https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb5bpWv%2FbtsIBBoIQ11%2FpStAiRhKVETVkWHinzpTsK%2Fimg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     color: var(--text-color);
 }
 
 .container {
     max-width: 800px;
-    margin: 40px auto;
+    width: 100%;
     padding: 30px;
-    background: white;
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 h1, h2 {
@@ -118,6 +129,7 @@ h2 {
     height: 10px;
     border-radius: 5px;
     overflow: hidden;
+    width: 100%;
 }
 
 #progress-bar {
@@ -144,6 +156,7 @@ h2 {
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
+    width: 100%;
 }
 
 #button-group .btn {
