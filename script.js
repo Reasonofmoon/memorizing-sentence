@@ -26,6 +26,10 @@ const fileInput = document.getElementById('file-input');
 const sampleCsvLink = document.getElementById('sample-csv');
 
 function displaySentence() {
+    if (sentences.length === 0) {
+        sentenceDisplay.textContent = "문장을 불러오는 중 오류가 발생했습니다.";
+        return;
+    }
     const sentence = sentences[currentSentenceIndex].english;
     const words = sentence.split(' ');
     const displayWords = words.slice(0, Math.ceil(words.length * (currentStage / totalStages)));
@@ -152,6 +156,15 @@ function showFeedback(message, type) {
     const feedbackElement = document.createElement('div');
     feedbackElement.textContent = message;
     feedbackElement.className = `feedback ${type}`;
+    feedbackElement.style.position = 'fixed';
+    feedbackElement.style.top = '20px';
+    feedbackElement.style.left = '50%';
+    feedbackElement.style.transform = 'translateX(-50%)';
+    feedbackElement.style.padding = '10px 20px';
+    feedbackElement.style.backgroundColor = type === 'success' ? '#4CAF50' : '#f44336';
+    feedbackElement.style.color = 'white';
+    feedbackElement.style.borderRadius = '5px';
+    feedbackElement.style.zIndex = '1000';
     document.body.appendChild(feedbackElement);
     setTimeout(() => {
         feedbackElement.remove();
@@ -164,5 +177,8 @@ nextBtn.addEventListener('click', nextStage);
 fileInput.addEventListener('change', handleFileUpload);
 sampleCsvLink.addEventListener('click', downloadSampleCSV);
 
-displaySentence();
-updateProgress();
+// 페이지 로드 시 초기화
+document.addEventListener('DOMContentLoaded', () => {
+    displaySentence();
+    updateProgress();
+});
