@@ -1,34 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
+
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --background-color: #f0f4f8;
+    --text-color: #2c3e50;
+    --error-color: #e74c3c;
+}
+
 body {
-    font-family: 'Noto Sans KR', Arial, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
     line-height: 1.6;
     margin: 0;
-    padding: 20px;
-    background-color: #f0f4f8;
-    color: #333;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .container {
     max-width: 800px;
-    margin: auto;
-    background: white;
+    margin: 40px auto;
     padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 h1, h2 {
     text-align: center;
-    color: #2c3e50;
+    color: var(--primary-color);
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 1.8em;
+    margin-top: 30px;
 }
 
 #sentence-display {
     font-size: 24px;
     margin-bottom: 20px;
-    min-height: 100px;
-    background-color: #e8f4fd;
     padding: 20px;
-    border-radius: 8px;
+    background-color: #e8f4fd;
+    border-radius: 10px;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 #translation {
@@ -36,57 +60,71 @@ h1, h2 {
     color: #666;
     margin-bottom: 20px;
     text-align: center;
+    font-size: 18px;
 }
 
 #user-input {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    font-size: 18px;
+    transition: border-color 0.3s ease;
+}
+
+#user-input:focus {
+    outline: none;
+    border-color: var(--secondary-color);
 }
 
 .btn {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 12px 24px;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.1s ease;
     font-size: 16px;
-    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
-
-#submit-btn { background-color: #4CAF50; }
-#show-answer-btn { background-color: #f44336; }
-#next-btn { background-color: #008CBA; }
-#file-label, #sample-csv { background-color: #9c27b0; }
 
 .btn:hover {
-    opacity: 0.9;
+    transform: translateY(-2px);
 }
 
+.btn:active {
+    transform: translateY(0);
+}
+
+#submit-btn { background-color: var(--secondary-color); }
+#show-answer-btn { background-color: var(--error-color); }
+#next-btn { background-color: var(--primary-color); }
+#file-label, #sample-csv { background-color: #9b59b6; }
+
 #hint {
-    color: #ff9800;
+    color: var(--error-color);
     margin-top: 15px;
     font-style: italic;
+    text-align: center;
 }
 
 #progress {
     margin-top: 30px;
-    background-color: #ddd;
-    height: 30px;
-    border-radius: 15px;
+    background-color: #ecf0f1;
+    height: 10px;
+    border-radius: 5px;
     overflow: hidden;
 }
 
 #progress-bar {
     height: 100%;
-    background-color: #4CAF50;
+    background-color: var(--secondary-color);
     width: 0%;
-    transition: width 0.5s;
+    transition: width 0.5s ease;
 }
 
 #file-input {
@@ -97,8 +135,9 @@ h1, h2 {
     margin-top: 30px;
     padding: 20px;
     background-color: #e7f3fe;
-    border-left: 6px solid #2196F3;
+    border-left: 6px solid var(--primary-color);
     margin-bottom: 30px;
+    border-radius: 5px;
 }
 
 #button-group {
@@ -112,7 +151,32 @@ h1, h2 {
     margin: 0 5px;
 }
 
+.feedback {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
+    z-index: 1000;
+    animation: fadeInOut 3s ease-in-out;
+}
+
+.feedback.success { background-color: var(--secondary-color); }
+.feedback.error { background-color: var(--error-color); }
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0; }
+    10%, 90% { opacity: 1; }
+}
+
 @media (max-width: 600px) {
+    .container {
+        padding: 20px;
+        margin: 20px;
+    }
+
     #button-group {
         flex-direction: column;
     }
